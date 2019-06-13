@@ -11,11 +11,20 @@
   <properties>
     <javaee.version>8.0</javaee.version>
     <spring.version>4.3.6.RELEASE</spring.version>
+    <spring.security.version>4.2.2.RELEASE</spring.security.version>
   </properties>
   
   <dependencies>
-    <!-- JAVA EE API -->
+  
+  <!-- Backend project -->
     <dependency>
+	  <groupId>br.com.zanardo.site</groupId>
+	  <artifactId>zanardositebackend</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	</dependency>
+
+	<!-- JAVA EE API -->
+	<dependency>
 	  <groupId>javax</groupId>
 	  <artifactId>javaee-api</artifactId>
 	  <version>${javaee.version}</version>
@@ -35,6 +44,23 @@
       <groupId>org.springframework</groupId>
 	  <artifactId>spring-webmvc</artifactId>
 	  <version>${spring.version}</version>
+	</dependency>
+	
+	<!-- SPRING SECURITY -->
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>${spring.security.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>${spring.security.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-taglibs</artifactId>
+		<version>${spring.security.version}</version>
 	</dependency>
 	
 	<!-- JSTL -->

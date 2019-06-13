@@ -33,21 +33,40 @@
 <body class="font-lato blue_zanardo_light_bg">
 	<div class="wrapper">
 		<!-- NAVBAR -->
-		<%@ include file="./shared/navbar.jsp"%>
+		<nav
+			class="navbar navbar-expand-md navbar-dark fixed-top w-inherit nav-bkg bg-shadow">
+			<a class="navbar-brand col-1" href="${contextRoot}/home"> <img
+				src="${images}/logos/logo_zanardo_nome.png" width="150" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarsExampleDefault"
+				aria-controls="navbarsExampleDefault" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-lg-10"
+				id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto w-inherit">
+				</ul>
+			</div>
+		</nav>
 
 		<!-- CONTENT -->
 		<div class="content">
-			<c:if test="${clickHome == true }">
-				<%@ include file="./home.jsp"%>
-			</c:if>
-			<c:if test="${clickOrcamento == true }">
-				<%@ include file="./orcamento.jsp"%>
-			</c:if>
+			<p>
+				<b>
+					${errorTitle}
+				</b>
+				<br>
+				<p>
+					${errorDescription}
+				<p>
+			</p>
 		</div>
-		
+
 		<!-- Footer -->
 		<%@ include file="./shared/footer.jsp"%>
-		
+
 		<!-- JavaScript -->
 		<script src="${js}/bootstrap.bundle.min.js"></script>
 		<script src="${js}/myApp.js"></script>
