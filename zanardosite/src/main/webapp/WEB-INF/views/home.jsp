@@ -1,3 +1,53 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<script>
+
+function ConvertFormToJSON(form){
+    var array = jQuery(form).serializeArray();
+    var json = {};
+    
+    jQuery.each(array, function() {
+        json[this.name] = this.value || '';
+    });
+    
+    return json;
+}
+
+	function sendEmail() {
+		alert('entrou');
+		/*
+		var name = document.getElementById("nome");
+		var nome = {
+			"nome" : name.value
+		}
+		*/
+		var datat = ConvertFormToJSON($('#sendForm'));
+		
+		$.ajax({
+			type : "POST",
+			contentType : 'application/json; charset=utf-8',
+			dataType : 'json',
+			url : "http://localhost:8080/zanardosite/sendMessage",
+			data : JSON.stringify(datat),
+			success : function(e) {
+				//console.log("SUCCESS: ", data);
+				//displayUsernamError(result);
+				alert('success');
+			},
+			error : function(e) {
+				//console.log("ERROR: ", e);
+				//displayUsernamError(e);
+				alert('error');
+			},
+			done : function(e) {
+				//console.log("DONE");
+				alert('done');
+			}
+		});
+				
+	}
+</script>
+
 <div class="container mt-4" id="divInicio">
 	<div class="row">
 		<div class="col-lg-6 font-weight-900 mt60px">
@@ -9,16 +59,12 @@
 				<div class="col-lg-6">
 					<button ID="btnEmpresa" OnClick="btnEmpresa_Click"
 						class="btn btn-primary btn-lg mt-2 w-100 orange_zanardo_bg bd_orange">
-						<div class="mt-5px">
 							<i class="fas fa-industry"></i> &nbsp; Abrir uma Empresa
-						</div>
 					</button>
 				</div>
 				<div class="col-lg-6">
 					<a class="btn btn-success btn-lg mt-2 w-100" href="${contextRoot}/orcamento" role="button">
-						<div class="mt-5px">
 							<i class="fas fa-envelope"></i> &nbsp; Orçamento por email
-						</div>
 					</a>
 				</div>
 			</div>
@@ -147,7 +193,7 @@
 	<div id="divEmpresa"></div>
 </div>
 
-<div class="container mt20px">
+<div class="container mt-5">
 	<div class="row">
 		<div class="col-lg mt-4 font-weight-900 font-30">A EMPRESA</div>
 	</div>
@@ -188,106 +234,106 @@
 			Profissionalismo absoluto<br /> Confiança<br />
 		</div>
 	</div>
-	<div class="row mt-5">
-		<div class="col-lg">
+	<div class="row">
+		<div class="col-lg mt-5">
 			<p class="font-19 font-weight-900 text-center">Nossos clientes
 				por região</p>
 			<div class="row mt-2">
-				<div class="col">
+				<div class="col-5">
 					<div
-						style="width: 150px; height: 25px; background-color: #2C3E50; float: right">
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
 					</div>
 				</div>
-				<div class="col text-left">CAMPINAS</div>
+				<div class="col-7 text-left">CAMPINAS</div>
 			</div>
 			<div class="row mt-2">
-				<div class="col">
+				<div class="col-5">
 					<div
-						style="width: 100px; height: 25px; background-color: #2C3E50; float: right">
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
 					</div>
 				</div>
-				<div class="col text-left">INDAIATUBA</div>
+				<div class="col-7 text-left">INDAIATUBA</div>
 			</div>
 			<div class="row mt-2">
-				<div class="col">
+				<div class="col-5">
 					<div
-						style="width: 75px; height: 25px; background-color: #2C3E50; float: right">
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
 					</div>
 				</div>
-				<div class="col text-left">VALINHOS</div>
+				<div class="col-7 text-left">VALINHOS</div>
 			</div>
 			<div class="row mt-2">
-				<div class="col">
+				<div class="col-5">
 					<div
-						style="width: 50px; height: 25px; background-color: #2C3E50; float: right">
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
 					</div>
 				</div>
-				<div class="col text-left">HORTOLÂNDIA</div>
+				<div class="col-7 text-left">HORTOLÂNDIA</div>
 			</div>
+			<div class="row mt-2">
+				<div class="col-5">
+					<div
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
+					</div>
+				</div>
+				<div class="col-7 text-left">OSASCO</div>
+			</div>
+		</div>
+		<div class="col-lg mt-5">
+			<p class="font-19 font-weight-900 text-center">Nossos clientes</p>
 			<div class="row mt-2">
 				<div class="col">
 					<div
 						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
 					</div>
 				</div>
-				<div class="col text-left">OSASCO</div>
-			</div>
-		</div>
-		<div class="col-lg">
-			<p class="font-19 font-weight-900 text-center">Nossos clientes</p>
-			<div class="row mt-2">
-				<div class="col-lg">
-					<div
-						style="width: 150px; height: 25px; background-color: #2C3E50; float: right">
-					</div>
-				</div>
-				<div class="col-lg-7 text-left">
+				<div class="col-9 text-left">
 					LUCRO REAL <b class="font-weight-900">+200 FUNCIONÁRIOS</b>
 				</div>
 			</div>
 			<div class="row mt-2">
-				<div class="col-lg">
-					<div
-						style="width: 125px; height: 25px; background-color: #2C3E50; float: right">
-					</div>
-				</div>
-				<div class="col-lg-7 text-left">
-					LUCRO REAL <b class="font-weight-900">+100 FUNCIONÁRIOS</b>
-				</div>
-			</div>
-			<div class="row mt-2">
-				<div class="col-lg">
-					<div
-						style="width: 100px; height: 25px; background-color: #2C3E50; float: right">
-					</div>
-				</div>
-				<div class="col-lg-7 text-left">
-					LUCRO REAL <b class="font-weight-900">+30 FUNCIONÁRIOS</b>
-				</div>
-			</div>
-			<div class="row mt-2">
-				<div class="col-lg">
-					<div
-						style="width: 75px; height: 25px; background-color: #2C3E50; float: right">
-					</div>
-				</div>
-				<div class="col-lg-7 text-left">SIMPLES NACIONAL</div>
-			</div>
-			<div class="row mt-2">
-				<div class="col-lg">
-					<div
-						style="width: 50px; height: 25px; background-color: #2C3E50; float: right">
-					</div>
-				</div>
-				<div class="col-lg-7 text-left">MEI</div>
-			</div>
-			<div class="row mt-2">
-				<div class="col-lg">
+				<div class="col">
 					<div
 						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
 					</div>
 				</div>
-				<div class="col-lg-7 text-left">PESSOA FÍSICA</div>
+				<div class="col-9 text-left">
+					LUCRO REAL <b class="font-weight-900">+100 FUNCIONÁRIOS</b>
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col">
+					<div
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
+					</div>
+				</div>
+				<div class="col-9 text-left">
+					LUCRO REAL <b class="font-weight-900">+30 FUNCIONÁRIOS</b>
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col">
+					<div
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
+					</div>
+				</div>
+				<div class="col-9 text-left">SIMPLES NACIONAL</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col">
+					<div
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
+					</div>
+				</div>
+				<div class="col-9 text-left">MEI</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col">
+					<div
+						style="width: 25px; height: 25px; background-color: #2C3E50; float: right">
+					</div>
+				</div>
+				<div class="col-9 text-left">PESSOA FÍSICA</div>
 			</div>
 		</div>
 	</div>
@@ -328,38 +374,56 @@
 					<div class="font-19 font-weight-900 text-center">
 						<i class="fas fa-envelope orange_zanardo fa-2x"></i>
 					</div>
-					<div class="mt-3 font-16">
-						contabilidade@zanardocontabilidade.com.br</div>
+					<div class="mt-3 font-15">
+						contabilidade@zanardocontabilidade.com.br
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row mt-5 pb-5">
 		<div class="col-lg-10 offset-lg-1">
-			<div class="row">
-				<div class="col-lg">
-					<input class="form-control" Placeholder="NOME" />
+			<form action="sendMessage" method="post" name="sendForm" id="sendForm">
+				<div class="row">
+					<div class="col-lg mt-4">
+						<input type="text" name="nome" id="nome" required="" class="form-control"
+							Placeholder="NOME" />
+					</div>
+					<div class="col-lg mt-4">
+						<input type="email" name="email" required="" class="form-control"
+							Placeholder="EMAIL" />
+					</div>
+					<div class="col-lg mt-4">
+						<input type="text" name="telefone" required=""
+							class="form-control onlyNumber" Placeholder="TELEFONE" />
+					</div>
 				</div>
-				<div class="col-lg">
-					<input class="form-control" Placeholder="EMAIL" />
+				<div class="row">
+					<div class="col-lg mt-4">
+						<input type="text" name="mensagem" required=""
+							class="form-control" Placeholder="MENSAGEM" TextMode="MultiLine"
+							Rows="4" />
+					</div>
 				</div>
-				<div class="col-lg">
-					<input class="form-control" Placeholder="TELEFONE" />
+				<div class="row pb-4">
+					<div class="col-lg mt-4 text-center">
+						<!-- <input type="submit" class="btn btn-warning btn-lg text-white orange_zanardo_bg bd_orange" value="ENVIAR MENSAGEM" /> -->
+						<button type="button" onClick="sendEmail()" class="btn btn-warning btn-lg text-white orange_zanardo_bg bd_orange">ENVIAR</button>
+						
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg mt-4">
-					<input class="form-control" Placeholder="MENSAGEM"
-						TextMode="MultiLine" Rows="4" />
+				<div class="row">
+					<div class="col-lg mt-2 text-center">
+						<c:if test="${not empty sent }">
+							<div class="col">
+								<div class="alert alert-success">${sent}</div>
+							</div>
+						</c:if>
+					</div>
 				</div>
-			</div>
-			<div class="row pb-4">
-				<div class="col-lg mt-4 text-center">
-					<button
-						class="btn btn-warning btn-lg text-white orange_zanardo_bg bd_orange">
-						ENVIAR MENSAGEM</button>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>
+

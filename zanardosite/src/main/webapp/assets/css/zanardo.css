@@ -26,13 +26,13 @@ body {
 }
 
 .content {
-	padding-bottom: 40px;
+	padding-bottom: 70px;
 }
 
 .footer {
     position: absolute;
-    bottom: 20px;
-    height: 40px;
+    bottom: 0px;
+    height: 70px;
 }
 
 .nav-bkg {
@@ -150,6 +150,10 @@ body {
 
 .font-14 {
     font-size: 14pt;
+}
+
+.font-15 {
+    font-size: 15pt;
 }
 
 .font-16 {

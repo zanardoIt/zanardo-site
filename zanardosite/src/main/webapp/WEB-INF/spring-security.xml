@@ -1,30 +1,50 @@
 <beans:beans
 	xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security
         https://www.springframework.org/schema/security/spring-security.xsd">
 
+	<context:component-scan base-package="br.com.zanardo.site.zanardositebackend"></context:component-scan>
+	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<http pattern="/resources/**" security="none" />
+
 	<http>
-		<intercept-url pattern="/**" access="hasRole('USER')" />
-		<form-login />
-		<logout />
+		<!-- only admin access --> 
+		<intercept-url pattern="/admin/**" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/sis/**" access="hasAuthority('USER')" />
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/login" />
+		<access-denied-handler error-page="/access-denied"/>
+		<!-- <logout /> -->
+		<csrf disabled="true"/>
+		
+		<!-- 
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/login" />
+		-->
+		 
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
+		<password-encoder ref="passwordEncoder"></password-encoder>
+			<jdbc-user-service 
+				data-source-ref="dataSource" 
+				users-by-username-query="select login, password, ativo from user_test where login = ?"
+				authorities-by-username-query="select login, role from user_test where login = ?"	
+			/>
+		<!-- 
 			<user-service>
-				<!-- Password is prefixed with {noop} to indicate to DelegatingPasswordEncoder 
-					that NoOpPasswordEncoder should be used. This is not safe for production, 
-					but makes reading in samples easier. Normally passwords should be hashed 
-					using BCrypt -->
-				<user name="julio" password="juliopassword"
-					authorities="ROLE_USER, ROLE_ADMIN" />
-				<user name="helen" password="helenpassword"
-					authorities="ROLE_USER" />
+				<user name="julio" password="juliopassword" authorities="ROLE_USER, ROLE_ADMIN" />
+				<user name="helen" password="helenpassword" authorities="ROLE_USER" />
 			</user-service>
+		-->
 		</authentication-provider>
 	</authentication-manager>
 

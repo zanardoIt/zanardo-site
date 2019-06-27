@@ -8,26 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import br.com.zanardo.site.zanardositebackend.dao.ServicoDao;
+import br.com.zanardo.site.zanardositebackend.dao.UsuarioDao;
 import br.com.zanardo.site.zanardositebackend.dto.Servico;
+import br.com.zanardo.site.zanardositebackend.dto.Usuario;
 
 public class ServicoTestCase {
 	
 	private static AnnotationConfigApplicationContext context;
 	private static ServicoDao servicoDao;
+	private static UsuarioDao usuarioDao;
 	private Servico servico;
+	private Usuario usuario;
+	
+//	@BeforeClass
+//	public static void init() {
+//		context = new AnnotationConfigApplicationContext();
+//		context.scan("br.com.zanardo.site.zanardositebackend");
+//		context.refresh();
+//		servicoDao = (ServicoDao)context.getBean("ServicoDao");
+//	}
 	
 	@BeforeClass
 	public static void init() {
 		context = new AnnotationConfigApplicationContext();
 		context.scan("br.com.zanardo.site.zanardositebackend");
 		context.refresh();
-		servicoDao = (ServicoDao)context.getBean("ServicoDao");
+		usuarioDao = (UsuarioDao)context.getBean("UsuarioDao");
 	}
+
+	//BCryptPasswordEncoder
 	
 //	@Test
 //	public void testAddServico() {
 //		servico = new Servico();
-//		servico.setDescricao("Quatro");
+//		servico.setDescricao("Quatro"); 
 //		servico.setAtivo(false);
 //		assertEquals("Sucesso", true, servicoDao.add(servico));
 //	}
@@ -81,6 +95,18 @@ public class ServicoTestCase {
 //		assertEquals("Sucesso", 2, servicoDao.list().size());
 //	}
 	
+	@Test
+	public void testAddServico() {
+		usuario = new Usuario(); 
+		usuario.setLogin("thanos");
+		usuario.setNome("Thanos");
+		usuario.setEmail("thanos@gmail.com");
+		usuario.setPassword("1234");
+		//usuario.setAtivo(true);
+		usuario.setRole("ADMIN");
+		usuarioDao.add(usuario);
+		assertEquals("Sucesso", true, usuarioDao.add(usuario));
+	}
 	
 	
 }

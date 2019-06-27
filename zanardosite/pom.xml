@@ -23,6 +23,28 @@
 	  <version>0.0.1-SNAPSHOT</version>
 	</dependency>
 
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.6.3</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.6.3</version>
+	</dependency>
+
+	<dependency>
+	  <groupId>javax.mail</groupId>
+	  <artifactId>javax.mail-api</artifactId>
+	  <version>1.6.2</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.sun.mail</groupId>
+	  <artifactId>javax.mail</artifactId>
+	  <version>1.6.0</version>
+	</dependency>
+
 	<!-- JAVA EE API -->
 	<dependency>
 	  <groupId>javax</groupId>

@@ -12,13 +12,24 @@
    ">
 
 	<!-- <context:component-scan base-package="br.com.zanardo.site.controller"></context:component-scan> -->
+	<!-- <context:component-scan base-package="br.com.zanardo.site.zanardositebackend"></context:component-scan> -->
 	<context:component-scan base-package="br.com.zanardo.site"></context:component-scan>
-	<context:component-scan base-package="br.com.zanardo.site.zanardositebackend"></context:component-scan>
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jacksonMessageConverter" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Load static resources -->

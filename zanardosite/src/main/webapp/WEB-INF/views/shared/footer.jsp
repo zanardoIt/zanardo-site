@@ -1,9 +1,11 @@
-<div class="container footer">
+<div class="container-fluid footer">
 	<!-- footer -->
 	<footer>
 		<div class="row">
-			<div class="col-lg-12 mt-3">
-				<p>Desenvolvido por Zanardo Contabilidade - 2019</p>
+			<div class="col-lg mt-4">
+				<p>
+					<span class="font-10">Desenvolvido por</span> <b>Zanardo Contabilidade</b>
+				</p>
 			</div>
 		</div>
 	</footer>
